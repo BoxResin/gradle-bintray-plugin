@@ -6,12 +6,12 @@ buildscript {
   repositories {
     jcenter()
     google()
-    maven { url 'https://dl.bintray.com/minyushov/gradle' }
+    maven { url 'https://dl.bintray.com/boxresin/maven' }
   }
 
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    classpath "com.minyushov.gradle:bintray:1.0.5"
+    classpath "boxresin.gradle.plugin:bintray-uploader:1.0.0"
   }
 }
 
@@ -51,12 +51,15 @@ gradlePlugin {
 
 bintrayUpload {
   dryRun = false
-  repo = "gradle"
-  groupId = "com.minyushov.gradle"
-  artifactId = "bintray"
-  version = "1.0.5"
-  vcsUrl = "https://github.com/minyushov/gradle-bintray-plugin.git"
+  repo = "maven"
+  pkgName = "$groupId:$artifactId"
+  groupId = "boxresin.gradle.plugin"
+  artifactId = "bintray-uploader"
+  version = "1.0.0"
+  vcsUrl = "https://github.com/BoxResin/gradle-bintray-plugin.git"
   license = "Apache-2.0"
   sources = false
   docs = false
+  user = findProperty('user') ?: ''
+  key = findProperty('key') ?: ''
 }
